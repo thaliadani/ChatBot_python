@@ -1,7 +1,7 @@
-from chatterbot.trainers import ListTrainer
 from chatterbot import ChatBot
+from chatterbot.trainers import ListTrainer
 
-bot = ChatBot(
+chatbot = ChatBot(
     'Bot',
     storage_adapter='chatterbot.storage.SQLStorageAdapter',
     database_uri='sqlite:///database.sqlite3',
@@ -10,11 +10,16 @@ bot = ChatBot(
         'chatterbot.logic.TimeLogicAdapter']
     )
 
-trainer = ListTrainer(bot)
+trainer = ListTrainer(chatbot)
 
-conversa = ['Oi', 'Olá', 'Tudo bem?', 'Tudo ótimo', 'Você gosta de programar?', 'Sim, eu programo em Python']
-
-bot.train(conversa)
+trainer.train([
+    'Oi',
+    'Olá',
+    'Tudo bem?',
+    'Tudo ótimo',
+    'Você gosta de programar?',
+    'Sim, eu programo em Python'
+])
 
 name = input("Qual o seu nome? ")
 print("Boas vindas ao serviço de bot!")
@@ -25,7 +30,7 @@ while True:
             print("Bot: Tchau")
             break
         else:
-            response = bot.get_response(request)
+            response = chatbot.get_response(request)
             print('Bot:', response)
     except(KeyboardInterrupt, EOFError, SystemExit):
         break
