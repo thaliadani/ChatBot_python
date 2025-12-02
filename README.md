@@ -1,1 +1,2 @@
-# ChatBot_python
+# ChatBot 
+Um chatbot simples utilizando chatterbot
